@@ -1,0 +1,33 @@
+<h1>Show Event</h1>
+
+<ul>
+
+  <li>
+    <strong>Title:</strong>
+    <%= @event.title %>
+  </li>
+
+  <li>
+    <strong>Description:</strong>
+    <%= @event.description %>
+  </li>
+
+  <li>
+    <strong>Lat:</strong>
+    <%= @event.lat %>
+  </li>
+
+  <li>
+    <strong>Long:</strong>
+    <%= @event.long %>
+  </li>
+
+  <li>
+    <strong>Is private:</strong>
+    <%= @event.is_private %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.event_path(@conn, :edit, @event) %></span>
+<span><%= link "Back", to: Routes.event_path(@conn, :index) %></span>
