@@ -1,13 +1,13 @@
 defmodule HappyeventWeb.EventController do
   use HappyeventWeb, :controller
+  require Logger
 
   alias Happyevent.Events
   alias Happyevent.Events.Event
 
   def index(conn, _params) do
     events = Events.list_events()
-    conn
-    |> redirect(to: "/events/new")
+    conn.redirect(to: "/events/new")
     #render(conn, "index.html", events: events)
   end
 
@@ -31,7 +31,8 @@ defmodule HappyeventWeb.EventController do
 
   def show(conn, %{"id" => id}) do
     event = Events.get_event!(id)
-    render(conn, "show.html", event: event)
+    participants = Events.get_participants!(id)
+    render(conn, "show.html", event: event, participants: participants )
   end
 
   def edit(conn, %{"id" => id}) do

@@ -10,46 +10,46 @@
   
 
 <body>
-     <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="#">Navbar</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+    <header>
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-              <%= if signed_in?(@conn) do %>
-                <li class="nav-item">
-                  <%= link "Logout", to: Routes.session_path(@conn, :delete), class: "nav-link", method: :delete %>
-                </li>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <%= if signed_in?(@conn) do %>
+              <li class="nav-item">
+                <%= link "Logout", to: Routes.session_path(@conn, :delete), class: "nav-link", method: :delete %>
+              </li>
 
-                <li class="nav-item">
-                  <a href='#' class="nav-link"> Some place</a>
-                </li>
+            <li class="nav-item">
+                <a href='#' class="nav-link"> Some place</a>
+              </li>
 
-                <li class="nav-item">
-                  <a class="dropdown-trigger" href="#!" data-target="user-actions"> <%= @current_user.username %></a>
-                </li>
+              <li class="nav-item">
+                <a class="dropdown-trigger" href="#!" data-target="user-actions"> <%= @current_user.username %></a>
+              </li>
 
-              <% end %>
-            </ul>
-            
-          </div>
-        </nav>
-    </header>
-      <%= if land_page?(@conn) do %>
-        <div class="masthead text-center text-white d-flex girl">
-          <h1 id="landing-title">Happy Event</h1>
-
+            <% end %>
+          </ul>
+          
         </div>
-      <% else %>
-        <main role="main" class="container">
-          <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-          <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-          <%= render @view_module, @view_template, assigns %>
-        </main>
-      <% end %>
-  <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
+      </nav>
+    </header>
+
+    <%= if land_page?(@conn) do %>
+      <div class="masthead text-center text-white d-flex girl">
+        <h1 id="landing-title">Happy Event</h1>
+      </div>
+    <% else %>
+      <main role="main" class="container">
+        <p class="alert alert-dark" role="alert"><%= get_flash(@conn, :info) %></p>
+        <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+        <%= render @view_module, @view_template, assigns %>
+      </main>
+    <% end %>
+    <script type="text/javascript" src="<%= Routes.static_path(@conn, "/js/app.js") %>"></script>
   </body>
 </html>

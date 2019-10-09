@@ -1,6 +1,7 @@
 defmodule Happyevent.Events.Event do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Happyevent.UserEvent
 
   schema "events" do
     field :description, :string
@@ -9,7 +10,9 @@ defmodule Happyevent.Events.Event do
     field :long, :float
     field :title, :string
     field :owner_id, :id
-    many_to_many :users, Happyevent.Accounts.User, join_through: "users_events"
+    #many_to_many :users, Happyevent.Accounts.User, join_through: "users_events"
+    has_many :users_events, UserEvent, on_delete: :delete_all
+    has_many :users, through: [:users_events, :user]
     timestamps()
   end
 

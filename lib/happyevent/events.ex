@@ -7,7 +7,7 @@ defmodule Happyevent.Events do
   alias Happyevent.Repo
 
   alias Happyevent.Events.Event
-
+  alias Happyevent.Accounts.User
   @doc """
   Returns the list of events.
 
@@ -108,5 +108,20 @@ defmodule Happyevent.Events do
   """
   def change_event(%Event{} = event) do
     Event.changeset(event, %{})
+  end
+
+    @doc """
+    Returns all the participant for specific event
+  """
+  def get_participants!(id) do
+    sale = Repo.get!(Event, id) |> Repo.preload([:users])
+    sale.users
+
+    #Event
+    #  |> where(id: id)
+    #  |> join(:inner, [r], ur in "users_events", r.id == ur.event_id) # or use a schema for user_roles
+    #  |> join(:inner, [r, ur], u in User, ur.user_id == u.id)
+    # |> select([r, ur, u], u)
+    # |> Repo.all()
   end
 end
